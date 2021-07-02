@@ -13,6 +13,9 @@ Plugin 'tmhedberg/SimpylFold'
 Plugin 'vim-scripts/indentpython.vim'
 Plugin 'davidhalter/jedi-vim'
 Plugin 'lifepillar/vim-mucomplete'
+Plugin 'liuchengxu/space-vim-dark'
+Plugin 'arcticicestudio/nord-vim'
+Plugin 'glepnir/oceanic-material'
 "The following are examples of different formats supported.
 
 " All of your Plugins must be added before the following line
@@ -61,3 +64,18 @@ let g:mucomplete#enable_auto_at_startup = 1
 "highlight settings:
 hi PmenuSel ctermfg=250 ctermbg=167 guifg=#bcbcbc guibg=#af5f5f
 hi Pmenu ctermfg=0 ctermbg=67 guifg=#bcbcbc guibg=#262626  
+
+
+"bracket and quote matching
+
+inoremap " ""<left>
+inoremap ' ''<left>
+inoremap ( ()<left>
+inoremap [ []<left>
+inoremap { {}<left>
+inoremap {<CR> {<CR>}<ESC>O
+inoremap {;<CR> {<CR>};<ESC>O
+
+"color scheme settings
+let g:oceanic_material_transparent_background=1
+colorscheme oceanic_material
