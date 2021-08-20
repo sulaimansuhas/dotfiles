@@ -132,10 +132,10 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<<
-export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/Devel
-source ~/.local/bin/virtualenvwrapper.sh
-conda deactivate
+#export WORKON_HOME=$HOME/.virtualenvs
+#export PROJECT_HOME=$HOME/Devel
+#source ~/.local/bin/virtualenvwrapper.sh
+#conda deactivate
 alias drive="cd /media/suhas/35f362c2-5640-448a-aa65-a13a63526f3f/Main/"
 alias bsource='source ~/.bashrc' 
 alias c='clear'
