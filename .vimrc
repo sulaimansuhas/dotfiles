@@ -1,3 +1,4 @@
+set nu
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -9,10 +10,6 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'tmhedberg/SimpylFold'
-Plugin 'vim-scripts/indentpython.vim'
-Plugin 'davidhalter/jedi-vim'
-Plugin 'lifepillar/vim-mucomplete'
 Plugin 'liuchengxu/space-vim-dark'
 Plugin 'arcticicestudio/nord-vim'
 Plugin 'glepnir/oceanic-material'
@@ -55,6 +52,15 @@ au BufNewFile,BufRead *.py
     \ set autoindent|
     \ set fileformat=unix|
 
+au BufNewFile,BufRead *.c
+    \ set tabstop=4|
+    \ set softtabstop=4|
+    \ set shiftwidth=4|
+"    \ set textwidth=79|
+    \ set expandtab|
+    \ set autoindent|
+    \ set fileformat=unix|
+
 "mucomplete settings
 set completeopt-=preview
 set completeopt+=menuone,noselect
@@ -75,6 +81,24 @@ inoremap [ []<left>
 inoremap { {}<left>
 inoremap {<CR> {<CR>}<ESC>O
 inoremap {;<CR> {<CR>};<ESC>O
+
+
+"setting up esc mapping
+inoremap jj <esc>
+
+
+"Leader Key set up
+
+nnoremap <SPACE> <Nop>
+let mapleader = " "
+map <leader>b :bp<enter>
+map <leader>n :bn<enter>
+map <leader>d :bd<enter>
+map <leader>w :w<enter>
+map <leader>q :q<enter>
+map <leader>s :sfind 
+map <leader>v :vert sfind 
+map <Leader>a ggVG
 
 "color scheme settings
 let g:oceanic_material_transparent_background=1
