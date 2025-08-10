@@ -44,13 +44,10 @@ if test $has_config -eq 0
     end
 end
 
-ln -s $PWD/nvim/ ~/.config/nvim
-echo "✅ Neovim config linked"
-
 # Create symlink to .config/nvim
 echo "🔗 Linking nvim configuration..."
 if test -d nvim 
-    if ln -s (realpath nvim/) ~/.config/nvim/
+    if ln -s (realpath nvim/) ~/.config/nvim
         echo "✅ nvim config linked successfully"
     else
         echo "❌ Failed to link nvim config"

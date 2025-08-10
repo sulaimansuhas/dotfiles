@@ -6,7 +6,7 @@ if not command -v tmux >/dev/null
     echo "📦 Installing tmux..."
     
     switch $DETECTED_OS
-        case "macos"
+        case "OSX"
             brew install tmux
         case "linux"
             if command -v apt >/dev/null
