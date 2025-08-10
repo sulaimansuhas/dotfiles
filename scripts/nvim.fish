@@ -28,15 +28,18 @@ if test $has_config -eq 0
         switch $backup_choice
             case "y" "Y"
                 set timestamp (date +%s)
-                test $has_config -eq 0 && mv ~/.config/nvim ~/.config/nvim.backup-$timestamp
+                mv ~/.config/nvim ~/.config/nvim.backup-$timestamp
                 echo "📦 Backup complete"
                 break
             case "n" "N" ""
-                test $has_config -eq 0 && rm ~/.config/nvim
+                rm ~/.config/nvim
                 echo "🗑️  Existing config removed"
                 break
+            case "k" "K" ""
+                echo "Keeping Existing config"
+                exit 0
             case "*"
-                echo "❌ Please enter 'y' or 'n'"
+                echo "❌ Please enter 'y' or 'n' or 'k'"
         end
     end
 end

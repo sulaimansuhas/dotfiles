@@ -5,7 +5,7 @@
 # - CARGO
 
 if [[ $OSTYPE == 'darwin'* ]]; then
-  export DETECTED_OS = "OSX"
+  export DETECTED_OS="OSX"
   echo '🍎 macOS detected'
 
   # Function to install packages via brew
@@ -50,14 +50,12 @@ if [[ $OSTYPE == 'darwin'* ]]; then
   install_package "fish"
 
   # Install Rust/Cargo
-  echo "🦀 Installing Rust and Cargo..."
-  curl https://sh.rustup.rs -sSf | sh
-
   if command -v cargo >/dev/null 2>&1; then
-	  echo "✅ Cargo: $(cargo --version)"
+	  echo "🦀 Cargo is installed: $(cargo --version)"
   else
-	  echo "❌ Cargo not found in PATH"
-  fi
+	  echo "🦀 Installing Rust and Cargo..."
+	  curl https://sh.rustup.rs -sSf | sh
+  fi 
 
   if command -v fish >/dev/null 2>&1; then
 	  echo "✅ Fish: $(fish --version)"
@@ -73,16 +71,11 @@ elif [[ $OSTYPE == 'linux'* ]]; then
 
 	install_package() {
 		local package=$1
-		if apt -qq list "$package" >/dev/null 2>&1; then
+		if dpkg -l | grep -q "^ii  $package "; then
 			echo "✅ $package already installed"
 		else
 			echo "📦 Installing $package..."
-			if apt install "$package"; then
-				echo "✅ $package installed successfully"
-			else
-				echo "❌ Failed to install $package"
-				return 1
-			fi
+			sudo apt update && sudo apt install -y "$package"
 		fi
 	}
 
@@ -148,6 +141,14 @@ fisher update
 else
     echo "⚠️  Plugin installation failed, but Fish config is ready"
 fi
+
+if fish -c "functions -q tide" 2>/dev/null; then
+	echo "✅ Tide found, configuring..."
+	fish -c "tide configure --auto --style=Lean --prompt_colors='True color' --show_time='24-hour format' --lean_prompt_height='One line' --prompt_spacing=Sparse --icons='Few icons' --transient=Yes"
+else
+	echo "❌ Tide not installed in Fish"
+fi
+
 
 # Run additional setup scripts
 if [ -d "scripts" ]; then
