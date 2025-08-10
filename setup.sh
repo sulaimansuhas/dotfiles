@@ -4,6 +4,9 @@
 # - FISH
 # - CARGO
 
+source .bashrc
+
+
 if [[ $OSTYPE == 'darwin'* ]]; then
   export DETECTED_OS="OSX"
   echo '🍎 macOS detected'
@@ -116,16 +119,16 @@ if [ -d ~/.config/fish ]; then
     mv ~/.config/fish ~/.config/fish.backup-$(date +%s)
 fi
 
-# Create parent directory if needed
-mkdir -p ~/.config
+# Create target directories
+find fish -type d -exec mkdir -p ~/.config/{} \;
 
-# Create the symlink
-if ln -s "$PWD/fish" ~/.config/fish; then
-    echo "✅ Fish config symlinked successfully"
-else
-    echo "❌ Failed to symlink Fish config"
-    exit 1
-fi
+# Then symlink all files (no individual backups needed)
+find fish -type f -exec sh -c '
+    target="$HOME/.config/$1"
+    ln -s "$PWD/$1" "$target"
+    echo "🔗 Linked: $1"
+' _ {} \;
+
 
 echo "🎣 Installing Fish plugins..."
 if fish -c "

@@ -22,7 +22,7 @@ if test $has_config -eq 0
     end
     
     while true
-        read -P "Backup existing nvim config? (y/N): " -n 1 backup_choice
+        read -P "Backup existing nvim config? (y(es)/n(o)/k(eep)): " -n 1 backup_choice
         echo
         
         switch $backup_choice
