@@ -66,15 +66,15 @@ end
 
 # Create symlink to tmux.conf
 echo "🔗 Linking tmux configuration..."
-if test -f tmux/tmux.conf
-    if ln -s (realpath tmux/tmux.conf) ~/.tmux.conf
+if test -f tmuxconfig/tmux.conf
+    if ln -s (realpath tmuxconfig/tmux.conf) ~/.tmux.conf
         echo "✅ tmux config linked successfully"
     else
         echo "❌ Failed to link tmux config"
         exit 1
     end
 else
-    echo "❌ tmux/tmux.conf not found"
+    echo "❌ tmuxconfig/tmux.conf not found"
     exit 1
 end
 
