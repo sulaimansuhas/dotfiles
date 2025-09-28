@@ -13,3 +13,5 @@ end
 if test -d "/usr/local/opt/llvm/bin"; and not contains "/usr/local/opt/llvm/bin" $PATH
     set -gx PATH "/usr/local/opt/llvm/bin" $PATH
 end
+
+eval "$(/opt/homebrew/bin/brew shellenv)"
