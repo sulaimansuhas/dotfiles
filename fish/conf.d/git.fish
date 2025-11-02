@@ -28,8 +28,6 @@ abbr --add glog git log --oneline --graph --decorate --all
 abbr --add glg git log --color --graph --pretty=format:'%Cred%h%Creset -%C\(yellow\)%d%Creset %s %Cgreen\(%cr\) %C\(bold blue\)<%an>%Creset' --abbrev-commit
 abbr --add gundo git reset --soft HEAD~1
 abbr --add gclean git clean -fd
-abbr --add gwip git add . && git commit -m "WIP"
-abbr --add gunwip git reset HEAD~1
 
 # Git status with short format
 abbr --add gss git status -s
