@@ -9,9 +9,14 @@ if test -d "$HOME/.cargo/bin"; and not contains "$HOME/.cargo/bin" $PATH
     set -gx PATH "$HOME/.cargo/bin" $PATH
 end
 
-# Add LLVM bin if it exists and isn't already in PATH
-if test -d "/usr/local/opt/llvm/bin"; and not contains "/usr/local/opt/llvm/bin" $PATH
-    set -gx PATH "/usr/local/opt/llvm/bin" $PATH
-end
+# Detect OS
+set -l os (uname -s)
 
-eval "$(/opt/homebrew/bin/brew shellenv)"
+if test "$os" = "Darwin"  # macOS
+    if test -d "/usr/local/opt/llvm/bin"; and not contains "/usr/local/opt/llvm/bin" $PATH
+        set -gx PATH "/usr/local/opt/llvm/bin" $PATH
+    end
+    /opt/homebrew/bin/brew shellenv | source
+else if test "$os" = "Linux"
+    # Linux-specific paths if needed
+end

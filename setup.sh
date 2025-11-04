@@ -84,11 +84,14 @@ elif [[ $OSTYPE == 'linux'* ]]; then
 
 	# Install Fish shell
 	echo "🐟 Installing Fish shell..."
+	sudo add-apt-repository ppa:fish-shell/release-4
 	install_package "fish"
 
 	# Install Rust/Cargo
-	echo "🦀 Installing Rust and Cargo..."
-	curl https://sh.rustup.rs -sSf | sh
+	if ! command -v cargo >/dev/null 2>&1; then
+		echo "🦀 Cargo Not Found Installing Rust and Cargo..."
+		curl https://sh.rustup.rs -sSf | sh
+	fi
 
 	if command -v cargo >/dev/null 2>&1; then
 	  echo "✅ Cargo: $(cargo --version)"

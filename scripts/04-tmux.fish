@@ -79,7 +79,7 @@ else
 end
 
 # Install TPM (Tmux Plugin Manager) if tmux.conf uses plugins
-if grep -q "set -g @plugin" tmux/tmux.conf
+if grep -q "set -g @plugin" tmuxconfig/tmux.conf
     echo "🔌 Installing TPM (Tmux Plugin Manager)..."
     
     # Clone TPM (will create ~/.tmux/plugins/tpm)
