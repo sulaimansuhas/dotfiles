@@ -36,4 +36,6 @@ bind -M insert \cn history-search-forward
 bind -M default \cn history-search-forward
 
 #think of a better setup for these custom scripts
-source ~/.config/customFish/main.fish
+if test -f ~/.config/customFish/main.fish
+    source ~/.config/customFish/main.fish
+end
