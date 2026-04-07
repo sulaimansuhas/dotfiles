@@ -11,8 +11,9 @@ set cargo_tools \
     "bat" \
     "exa" \
     "fd-find" \
-    "tokei"
-   # "hyperfine"
+    "tokei" \
+    "git-delta" \
+    "jj-cli"
 
 for tool in $cargo_tools
     echo "📦 Installing $tool..."
