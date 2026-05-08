@@ -1,3 +1,5 @@
 # dotfiles
 Ma dots
-Will add some documentation in da future
+
+See [exec/OBSIDIAN_BACKUP.md](exec/OBSIDIAN_BACKUP.md) for the Obsidian Git
+backup automation.
