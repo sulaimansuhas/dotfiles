@@ -40,3 +40,18 @@ bind -M insert \cy accept-autosuggestion
 if test -f ~/.config/customFish/main.fish
     source ~/.config/customFish/main.fish
 end
+
+# User binaries (also used by the Helix CLI installer)
+fish_add_path --path $HOME/.local/bin
+
+# bun
+set -gx BUN_INSTALL $HOME/.bun
+fish_add_path --path $BUN_INSTALL/bin
+
+# Reuse one ssh-agent per machine via a fixed socket
+set -gx SSH_AUTH_SOCK ~/.ssh/agent.sock
+ssh-add -l >/dev/null 2>&1
+if test $status -eq 2
+    rm -f $SSH_AUTH_SOCK
+    ssh-agent -c -a $SSH_AUTH_SOCK >/dev/null
+end
