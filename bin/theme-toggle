@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# Flip between light and dark theme, then nudge tmux to re-source.
+# Running nvim instances pick up the change on FocusGained.
+
+set -e
+
+MODE_FILE="${XDG_CONFIG_HOME:-$HOME/.config}/theme-mode"
+mkdir -p "$(dirname "$MODE_FILE")"
+
+current=$(cat "$MODE_FILE" 2>/dev/null || echo dark)
+case "$current" in
+    light) new=dark ;;
+    *)     new=light ;;
+esac
+
+printf '%s\n' "$new" > "$MODE_FILE"
+echo "Theme: $new"
+
+if command -v tmux >/dev/null 2>&1 && tmux info >/dev/null 2>&1; then
+    tmux source-file ~/.tmux.conf >/dev/null 2>&1 || true
+fi
